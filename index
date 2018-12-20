@@ -1,0 +1,10 @@
+void func()
+
+{
+ printf("hello")
+ printf("hello")
+}
+void main()
+{
+ printf("hi")
+}

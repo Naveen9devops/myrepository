@@ -1,0 +1,24 @@
+git for-each-ref --format='%(refname)' refs/remotes/origin/tags |
+cut -d / -f 5 |
+while read ref
+do
+  git tag "$ref" "refs/remotes/origin/tags/$ref";
+  # git branch -D "tags/$ref";
+done
+
+
+git for-each-ref --format='%(refname)' refs/remotes/origin | cut -d / -f 4 | grep -v 'tags' | grep -v 'trunk' |
+while read ref
+do
+  git checkout -b "$ref" "refs/remotes/origin/$ref";
+done
+
+
+
+git for-each-ref --format='%(refname)' refs/remotes/origin | cut -d / -f 4 | grep -v 'tags' | grep -v 'trunk' |
+while read ref
+do
+  git push -u origin "$ref";
+  git push --tags;
+done
+
